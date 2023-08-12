@@ -89,6 +89,12 @@ nav.navbar.scrolled {
   background-color: #121212;
 }
 
+@media screen and (max-width: 576px) {
+  .mobile-navbar {
+    background-color: #121212;
+  }
+}
+
 nav.navbar .navbar-nav .nav-link {
   color: #fff;
 }
@@ -245,7 +251,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: scree;
 }
 .banner .tagline {
   font-weight: 700;
@@ -269,6 +274,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-bottom: 20px;
   display: block;
 }
+
+@media screen and (max-width: 576px) {
+  .banner h1 {
+    font-size: 30px;
+  }
+}
 .banner p {
   color: #b8b8b8;
   font-size: 18px;
@@ -276,6 +287,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.5em;
   width: 96%;
 }
+
+@media screen and (max-width: 576px) {
+  .banner p {
+    font-size: 14px;
+  }
+}
+
 .banner button {
   color: #fff;
   font-weight: 700;
@@ -295,20 +313,17 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-left: 25px;
 }
 
-.profile-image {
-  width: 350px;
-  brightness: 10%;
-  object-fit: contain;
-  filter: brightness(60%);
-  opacity: 1;
-  float: left;
-  position: relative;
-  border-radius: 100%;
-}
-
 .banner img {
   animation: updown 3s linear infinite;
-} /*
+}
+@media screen and (max-width: 576px) {
+  .banner img {
+    width: 80%;
+    height: auto;
+  }
+}
+
+/*
 @keyframes updown {
   0% {
     transform: translateY(-20px);

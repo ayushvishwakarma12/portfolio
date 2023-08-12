@@ -12,7 +12,6 @@ export default function NavBar() {
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 10) {
-        console.log("hey");
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -27,7 +26,10 @@ export default function NavBar() {
     setActiveLink(value);
   };
   return (
-    <Navbar expand="md" className={scrolled ? "scrolled navbar-dark" : ""}>
+    <Navbar
+      expand="md"
+      className={`${scrolled ? "scrolled navbar-dark" : ""} mobile-navbar`}
+    >
       {console.log(scrolled)}
       <Container>
         <Navbar.Brand className="logo" href="#home">
