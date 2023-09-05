@@ -2,7 +2,6 @@ import { Col } from "react-bootstrap";
 import { Navigate, Redirect } from "react-router-dom";
 
 export const ProjectCard = ({ title, description, imgUrl, projectLink }) => {
-  console.log(projectLink);
   const onClickProjectLink = () => {
     <Navigate to={projectLink} />;
   };

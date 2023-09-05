@@ -68,7 +68,7 @@ const skillsData = [
   },
 ];
 
-export default function Skillss() {
+export default function Skills() {
   return (
     <section id="skills">
       <div className="fluid-container">
@@ -76,12 +76,16 @@ export default function Skillss() {
           <div className="d-flex flex-row w-100 gap-5 p-4 skill-container flex-wrap">
             {skillsData.map((skill, i) => {
               return (
-                <div className="d-flex flex-column flex-grow-1 gap-3 col-sm-5 col-lg-2">
+                <div
+                  key={`skill-${i}`}
+                  className="d-flex flex-column flex-grow-1 gap-3 col-sm-5 col-lg-2"
+                >
                   <h1 className="skill-label">{skill.label}</h1>
-                  <div className="d-flex flex-column">
-                    {skill.data.map((language) => {
+
+                  <div key={`div-${i}`} className="d-flex flex-column">
+                    {skill.data.map((language, j) => {
                       return (
-                        <>
+                        <div key={`language-${i}-${j}`}>
                           <p className="skill-name">{language.skillName}</p>
                           <Line
                             className="line"
@@ -91,7 +95,7 @@ export default function Skillss() {
                             trailWidth="4"
                             strokeLinecap="round"
                           />
-                        </>
+                        </div>
                       );
                     })}
                   </div>

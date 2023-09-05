@@ -119,7 +119,7 @@ export const Projects = () => {
       <Container>
         <Row>
           <Col size={12}>
-            <TrackVisibility>
+            <TrackVisibility>  
               {({ isVisible }) => (
                 <div
                   className={

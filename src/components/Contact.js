@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
+import emailjs from "@emailjs/browser";
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -14,6 +15,22 @@ export const Contact = () => {
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState("Send");
   const [status, setStatus] = useState({});
+  const [formValidation, setFormValidation] = useState({
+    name: false,
+    lastname: false,
+    user_email: false,
+    phone: false,
+    message: false,
+  });
+
+  const checkForm = (event) => {
+    console.log(event.target.name);
+    if (event.target.value === "") {
+      setFormValidation({ ...formValidation, [event.target.name]: true });
+    } else {
+      setFormValidation({ ...formValidation, [event.target.name]: false });
+    }
+  };
 
   const onFormUpdate = (category, value) => {
     setFormDetails({
@@ -22,32 +39,36 @@ export const Contact = () => {
     });
   };
 
+  let isButtonDisable = false;
+  for (let i in formDetails) {
+    if (formDetails[i] === "") {
+      isButtonDisable = true;
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code == 200) {
-      setStatus({ succes: true, message: "Message sent successfully" });
-    } else {
-      setStatus({
-        succes: false,
-        message: "Something went wrong, please try again later.",
+    emailjs
+      .sendForm(
+        "service_ieq6qdy",
+        "template_trlyqn6",
+        e.target,
+        "RPo_D_xDrFgNKYNaX"
+      )
+      .then((response) => {
+        setButtonText("Message Sent");
+      })
+      .catch((error) => {
+        setButtonText("Error...");
+        console.log(error);
       });
-    }
   };
 
   return (
     <section className="contact" id="connect">
       <Container>
+        {console.log(formValidation.name)}
         <Row className="align-items-center">
           <Col size={12} md={6}>
             <TrackVisibility>
@@ -71,58 +92,123 @@ export const Contact = () => {
                   }
                 >
                   <h2>Get In Touch</h2>
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
                         <input
                           type="text"
                           value={formDetails.firstName}
                           placeholder="First Name"
+                          name="name"
                           onChange={(e) =>
                             onFormUpdate("firstName", e.target.value)
                           }
+                          onBlur={checkForm}
                         />
+                        {formValidation.name && (
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              paddingLeft: "5px",
+                              color: "#EF1E1E",
+                            }}
+                          >
+                            *Please Enter Your Name
+                          </p>
+                        )}
                       </Col>
                       <Col size={12} sm={6} className="px-1">
                         <input
                           type="text"
                           value={formDetails.lasttName}
                           placeholder="Last Name"
+                          name="lastname"
                           onChange={(e) =>
                             onFormUpdate("lastName", e.target.value)
                           }
+                          onBlur={checkForm}
                         />
+                        {formValidation.lastname && (
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              paddingLeft: "5px",
+                              color: "#EF1E1E",
+                            }}
+                          >
+                            *Please Enter Your Last Name
+                          </p>
+                        )}
                       </Col>
                       <Col size={12} sm={6} className="px-1">
                         <input
                           type="email"
-                          value={formDetails.email}
+                          value={formDetails.user_email}
                           placeholder="Email Address"
+                          name="user_email"
                           onChange={(e) =>
                             onFormUpdate("email", e.target.value)
                           }
+                          onBlur={checkForm}
                         />
+                        {formValidation.user_email && (
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              paddingLeft: "5px",
+                              color: "#EF1E1E",
+                            }}
+                          >
+                            *Please Enter Your Email
+                          </p>
+                        )}
                       </Col>
                       <Col size={12} sm={6} className="px-1">
                         <input
                           type="tel"
                           value={formDetails.phone}
                           placeholder="Phone No."
+                          name="phone"
                           onChange={(e) =>
                             onFormUpdate("phone", e.target.value)
                           }
+                          onBlur={checkForm}
                         />
+                        {formValidation.phone && (
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              paddingLeft: "5px",
+                              color: "#EF1E1E",
+                            }}
+                          >
+                            *Please Enter Your Phone Number
+                          </p>
+                        )}
                       </Col>
                       <Col size={12} className="px-1">
                         <textarea
                           rows="6"
                           value={formDetails.message}
                           placeholder="Message"
+                          name="message"
                           onChange={(e) =>
                             onFormUpdate("message", e.target.value)
                           }
+                          onBlur={checkForm}
                         ></textarea>
-                        <button type="submit">
+                        {formValidation.message && (
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              paddingLeft: "5px",
+                              color: "#EF1E1E",
+                            }}
+                          >
+                            *Please Enter Your Message
+                          </p>
+                        )}
+                        <button type="submit" disabled={isButtonDisable}>
                           <span>{buttonText}</span>
                         </button>
                       </Col>

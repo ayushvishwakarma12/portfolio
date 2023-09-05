@@ -102,13 +102,19 @@ nav.navbar .navbar-nav .nav-link {
 nav.navbar a.navbar-brand {
   width: 9%;
 }
+nav.navbar a.navbar-brand:hover {
+  color: #fff;
+}
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
   color: #fff !important;
   letter-spacing: 0.8px;
-  padding: 0 25px;
+  padding: 0 5px;
   font-size: 18px;
   opacity: 0.75;
+}
+nav.navbar .navbar-nav .nav-link.navbar-link {
+  padding-y: 0px;
 }
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
 nav.navbar .navbar-nav a.nav-link.navbar-link.active {
@@ -189,6 +195,24 @@ span.navbar-text {
   position: relative;
   background-color: transparent;
   transition: 0.3s ease-in-out;
+}
+
+.lets-connect-button {
+  color: #fff;
+}
+
+.lets-connect-button:hover {
+  color: #000;
+}
+
+.navbar-text a,
+.navbar-text a:focus,
+.navbar-text a:hover {
+  color: inherit;
+}
+
+.navbar-nav {
+  --bs-nav-link-padding-y: 5px;
 }
 
 @media screen and (max-width: 576px) {

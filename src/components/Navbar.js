@@ -30,7 +30,6 @@ export default function NavBar() {
       expand="md"
       className={`${scrolled ? "scrolled navbar-dark" : ""} mobile-navbar`}
     >
-      {console.log(scrolled)}
       <Container>
         <Navbar.Brand className="logo" href="#home">
           Ayush
@@ -77,10 +76,7 @@ export default function NavBar() {
             </div>
             <button className="vvd" onClick={() => console.log("connect")}>
               <span>
-                <a
-                  href="#connect"
-                  style={{ textDecoration: "none", color: "#ffffff" }}
-                >
+                <a href="#connect" className="lets-connect-button">
                   Let's Connect"
                 </a>
               </span>

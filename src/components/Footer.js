@@ -68,11 +68,11 @@ export const Footer = () => {
               <a href="" className="text-white me-4">
                 <i className="fab fa-google"></i>
               </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-instagram"></i>
+              <a href="" className="text-white me-4">
+                <i className="fab fa-instagram"></i>
               </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-linkedin"></i>
+              <a href="" className="text-white me-4">
+                <i className="fab fa-linkedin"></i>
               </a>
               <a href="" className="text-white me-4">
                 <i className="fab fa-github"></i>
@@ -82,11 +82,11 @@ export const Footer = () => {
 
           <div
             className="text-center p-3"
-            style={{ "background-color": "rgba(0, 0, 0, 0.2)" }}
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
           >
-            © 2020 Copyright:
+            © 2023 :{" "}
             <a className="text-white" href="https://mdbootstrap.com/">
-              MDBootstrap.com
+              Ayush
             </a>
           </div>
         </footer>
